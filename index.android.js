@@ -55,6 +55,13 @@ var CrosswalkWebView = React.createClass({
     getWebViewHandle () {
         return findNodeHandle(this.refs[WEBVIEW_REF]);
     },
+     reload () {
+        UIManager.dispatchViewManagerCommand(
+            this.getWebViewHandle(),
+            UIManager.CrosswalkWebView.Commands.reload,
+            null
+        );
+    },
     sendToBridge (message) {
         UIManager.dispatchViewManagerCommand(
             this.getWebViewHandle(),
