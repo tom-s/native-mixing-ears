@@ -25,31 +25,29 @@ var CrosswalkWebView = React.createClass({
         };
     },
     componentDidMount: function() {
-      sendToBridge('YOUPI')
     },
     componentWillMount: function() {
-        DeviceEventEmitter.addListener("CrosswalkWebViewBridgeAndroid", (body) => {
+        DeviceEventEmitter.addListener("crosswalkWebViewBridgeMessage", (body) => {
             alert('body ' + body);
             const { onBridgeMessage } = this.props;
             const message = body.message;
-            if (onBridgeMessage) {
-                onBridgeMessage(message);
-            }
-        });
-         DeviceEventEmitter.addListener("crosswalkWebViewBridgeAndroid", (body) => {
-            alert('body ' + body);
-            alert(body);
-            const { onBridgeMessage } = this.props;
-            const message = body.message;
-            if (onBridgeMessage) {
+            if (this.props.onBridgeMessage) {
                 onBridgeMessage(message);
             }
         });
     },
     render () {
+      const injectScript = `
+  (function () {
+                    alert('injected')
+                      CrosswalkWebViewBridge.send("hello from webview");
+                    }
+                  }());
+`;
         return (
             <NativeCrosswalkWebView
                   { ...this.props }
+                  injectedJavascript={injectScript}
                   onNavigationStateChange={ this.onNavigationStateChange }
                   ref={ WEBVIEW_REF }/>
         );
@@ -58,7 +56,6 @@ var CrosswalkWebView = React.createClass({
         return findNodeHandle(this.refs[WEBVIEW_REF]);
     },
     sendToBridge (message) {
-        alert('tru to send message' + message)
         UIManager.dispatchViewManagerCommand(
             this.getWebViewHandle(),
             UIManager.CrosswalkWebView.Commands.sendToBridge,
