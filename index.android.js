@@ -28,7 +28,6 @@ var CrosswalkWebView = React.createClass({
     },
     componentWillMount: function() {
         DeviceEventEmitter.addListener("crosswalkWebViewBridgeMessage", (body) => {
-            alert('body ' + body);
             const { onBridgeMessage } = this.props;
             const message = body.message;
             if (this.props.onBridgeMessage) {
@@ -39,6 +38,7 @@ var CrosswalkWebView = React.createClass({
     render () {
       const injectScript =`(function () {
         CrosswalkWebViewBridge.send("hello from webview");
+
       }())`;
         return (
             <NativeCrosswalkWebView
