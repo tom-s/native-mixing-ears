@@ -37,17 +37,13 @@ var CrosswalkWebView = React.createClass({
         });
     },
     render () {
-      const injectScript = `
-  (function () {
-                    alert('injected')
-                      CrosswalkWebViewBridge.send("hello from webview");
-                    }
-                  }());
-`;
+      const injectScript =`(function () {
+        CrosswalkWebViewBridge.send("hello from webview");
+      }())`;
         return (
             <NativeCrosswalkWebView
                   { ...this.props }
-                  injectedJavascript={injectScript}
+                  injectedJavaScript={injectScript}
                   onNavigationStateChange={ this.onNavigationStateChange }
                   ref={ WEBVIEW_REF }/>
         );
