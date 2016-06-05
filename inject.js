@@ -2,11 +2,7 @@
 const inject = (window) => {
 
   // create web audio api context
-  let audioCtx = new (window.AudioContext ||
-    window.webkitAudioContext ||
-    window.mozAudioContext ||
-    window.oAudioContext ||
-    window.msAudioContext)()
+  let audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 
 
   const play = (payload) => {
@@ -27,7 +23,7 @@ const inject = (window) => {
 
       // Decode asynchronously
       request.onload = function() {
-        alert('response', audioCtx.decodeAudioData)
+        alert('response status' + request.status)
         audioCtx.decodeAudioData(request.response, (buffer) => {
           alert('buffer' + buffer)
           playSound(buffer)
@@ -43,7 +39,7 @@ const inject = (window) => {
       request.send();
     }
 
-    loadSound('/android_asset/www/techno.wav')
+    loadSound('/android_asset/www/drums.wav')
     //loadSound('http://freewavesamples.com/files/Korg-DW-8000-Noise-Snare.wav')
   }
 
@@ -70,7 +66,7 @@ const inject = (window) => {
  // add dependancies
 const wrappedInject = `
     var test = ${inject}
-    test(window, null);
+    test(window, null)
 `
 
 export default wrappedInject
