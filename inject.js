@@ -1,14 +1,15 @@
 
-import decodeArrayBuffer from './utils/base64Binary'
-
-const inject = (window, decodeArrayBuffer) => {
+const inject = (window) => {
 
   // create web audio api context
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let audioCtx = new (window.AudioContext ||
+    window.webkitAudioContext ||
+    window.mozAudioContext ||
+    window.oAudioContext ||
+    window.msAudioContext)()
+
 
   const play = (payload) => {
-
-    let myBuffer
     const { sound } = payload
     alert("play" + sound)
 
@@ -26,6 +27,7 @@ const inject = (window, decodeArrayBuffer) => {
 
       // Decode asynchronously
       request.onload = function() {
+        alert('response', audioCtx.decodeAudioData)
         audioCtx.decodeAudioData(request.response, (buffer) => {
           alert('buffer' + buffer)
           playSound(buffer)
@@ -41,9 +43,7 @@ const inject = (window, decodeArrayBuffer) => {
       request.send();
     }
 
-
-
-    loadSound('/android_asset/www/drums.wav')
+    loadSound('/android_asset/www/techno.wav')
     //loadSound('http://freewavesamples.com/files/Korg-DW-8000-Noise-Snare.wav')
   }
 
@@ -70,8 +70,7 @@ const inject = (window, decodeArrayBuffer) => {
  // add dependancies
 const wrappedInject = `
     var test = ${inject}
-    var decodeArrayBuffer = ${decodeArrayBuffer}
-    test(window, decodeArrayBuffer, null);
+    test(window, null);
 `
 
 export default wrappedInject
