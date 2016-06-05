@@ -5,11 +5,12 @@
 
 import React, { Component, PropTypes } from 'react';
 import { findNodeHandle, AppRegistry, StyleSheet, NativeModules, requireNativeComponent, View, Text, DeviceEventEmitter } from 'react-native';
-var { UIManager, CrosswalkWebViewManager: { JSNavigationScheme } } = NativeModules;
+const { UIManager, CrosswalkWebViewManager: { JSNavigationScheme } } = NativeModules;
+import inject from './inject'
 
-var WEBVIEW_REF = 'crosswalkWebView';
+const WEBVIEW_REF = 'crosswalkWebView';
 
-var CrosswalkWebView = React.createClass({
+const CrosswalkWebView = React.createClass({
     statics:   { JSNavigationScheme },
     propTypes: {
         localhost:               PropTypes.bool.isRequired,
@@ -25,6 +26,9 @@ var CrosswalkWebView = React.createClass({
         };
     },
     componentDidMount: function() {
+        setTimeout(() => {
+            this.sendToBridge("TEST")
+        }, 2000)
     },
     componentWillMount: function() {
         DeviceEventEmitter.addListener("crosswalkWebViewBridgeMessage", (body) => {
@@ -36,10 +40,7 @@ var CrosswalkWebView = React.createClass({
         });
     },
     render () {
-      const injectScript =`(function () {
-        CrosswalkWebViewBridge.send("hello from webview");
-
-      }())`;
+        const injectScript = `var init = ${String(inject)}; init(window);`
         return (
             <NativeCrosswalkWebView
                   { ...this.props }
@@ -67,7 +68,7 @@ var CrosswalkWebView = React.createClass({
     },
 });
 
-var NativeCrosswalkWebView = requireNativeComponent('CrosswalkWebView', CrosswalkWebView);
+const NativeCrosswalkWebView = requireNativeComponent('CrosswalkWebView', CrosswalkWebView);
 
 
 class nativeMixing extends Component {
