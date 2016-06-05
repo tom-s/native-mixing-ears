@@ -11,6 +11,7 @@ import {
 const { UIManager, CrosswalkWebViewManager: { JSNavigationScheme } } = NativeModules;
 import inject from './inject'
 
+
 const WEBVIEW_REF = 'crosswalkWebView';
 
 const CrosswalkWebView = React.createClass({
@@ -26,7 +27,12 @@ const CrosswalkWebView = React.createClass({
 
     componentDidMount: function() {
         setTimeout(() => {
-            this.sendToBridge("PLAY")
+            this.sendToBridge({
+                action: "PLAY",
+                payload: {
+                    sound: 'drums'
+                }
+            })
         }, 2000)
     },
 
@@ -41,7 +47,8 @@ const CrosswalkWebView = React.createClass({
     },
 
     render () {
-        const injectScript = `var init = ${String(inject)}; init(window);`
+        const injectScript = inject
+        console.warn(injectScript)
         return (
             <NativeCrosswalkWebView
                   { ...this.props }
@@ -64,10 +71,12 @@ const CrosswalkWebView = React.createClass({
     },
 
     sendToBridge (message) {
+        const strMessage = JSON.stringify(message)
+        console.log(strMessage)
         UIManager.dispatchViewManagerCommand(
             this.getWebViewHandle(),
             UIManager.CrosswalkWebView.Commands.sendToBridge,
-            [message]
+            [strMessage]
         );
     },
 });
@@ -87,7 +96,7 @@ class nativeMixing extends Component {
                 <CrosswalkWebView
                     localhost={ false }
                     onBridgeMessage={this.onBridgeMessage}
-                    style={{ flex: 0.5 }}
+                    style={{ flex: 0 }}
                     url={url} />
             </View>
         );
