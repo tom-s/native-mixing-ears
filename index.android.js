@@ -33,7 +33,7 @@ const CrosswalkWebView = React.createClass({
                     sound: 'drums'
                 }
             })
-        }, 2000)
+        }, 3000)
     },
 
     componentWillMount: function() {
@@ -48,7 +48,6 @@ const CrosswalkWebView = React.createClass({
 
     render () {
         const injectScript = inject
-        console.warn(injectScript)
         return (
             <NativeCrosswalkWebView
                   { ...this.props }
