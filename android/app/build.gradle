@@ -117,14 +117,6 @@ android {
             }
         }
     }
-    sourceSets {
-        defaultConfig {
-            assets.srcDirs = ['src/main/assets']
-        }
-        relase {
-            assets.srcDirs = ['src/main/assets']
-        }
-    }
 }
 
 dependencies {
