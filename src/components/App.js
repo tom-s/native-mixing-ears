@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import Reactotron from 'reactotron'
 import Webview from 'nativeMixing/src/components/Webview'
+import inject from 'nativeMixing/src/utils/inject'
 
 class App extends Component {
   componentDidMount() {
@@ -14,7 +15,8 @@ class App extends Component {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        <Webview localhost={ false }
+        <Webview localhost={false}
+          injectedJavaScript={inject}
           onBridgeMessage={this.onBridgeMessage}
           style={{ flex: 0 }}
           url={url} />
