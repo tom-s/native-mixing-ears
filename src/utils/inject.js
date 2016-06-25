@@ -14,7 +14,7 @@ const inject = (window) => {
     }
 
     const loadSound = (sound) => {
-      const request = new XMLHttpRequest()
+      const request = new window.XMLHttpRequest()
       const url = `file:///android_asset/sounds/${sound}`
       request.responseType = 'arraybuffer'
       request.open('GET', url, true)
