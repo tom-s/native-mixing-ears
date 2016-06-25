@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-//import Webview from 'nativeMixing/src/components/Webview'
+import Reactotron from 'reactotron'
+import Webview from 'nativeMixing/src/components/Webview'
 
 class App extends Component {
+  componentDidMount() {
+    Reactotron.log('start')
+  }
   render() {
     const url = 'http://www.google.fr'
     return (
@@ -10,10 +14,10 @@ class App extends Component {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        {/* <Webview localhost={ false }
+        <Webview localhost={ false }
           onBridgeMessage={this.onBridgeMessage}
           style={{ flex: 0 }}
-          url={url} /> */}
+          url={url} />
      </View>
     )
   }

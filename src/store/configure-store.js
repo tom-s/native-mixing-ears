@@ -1,15 +1,20 @@
-import { createStore, applyMiddleware } from "redux"
-import createLogger from "redux-logger"
-import rootReducer from "../reducers"
+import { createStore, applyMiddleware, compose } from 'redux'
+import createLogger from 'redux-logger'
+import rootReducer from '../reducers'
+import reactotron from 'reactotron'
+import sagaMiddleware from 'redux-saga'
+import sagas from '../sagas/'
 
 const loggerMiddleware = createLogger()
 
-const createStoreWithMiddleware = applyMiddleware(
-  loggerMiddleware
-)(createStore)
+export default () => {
+  const enhancer = compose(
+    applyMiddleware(
+      loggerMiddleware,
+      sagaMiddleware(...sagas)
+    ),
+    reactotron.storeEnhancer()
+  )
 
-const configureStore = (initialState) => {
-  return createStoreWithMiddleware(rootReducer, initialState)
+  return createStore(rootReducer, enhancer)
 }
-
-export default configureStore
