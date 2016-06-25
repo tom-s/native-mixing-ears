@@ -9,7 +9,7 @@ class App extends Component {
     Reactotron.log('start')
   }
   render() {
-    const url = 'http://www.google.fr'
+    const url = 'file:///android_asset/webview.html'
     return (
       <View  style={{ flex: 1 }}>
         <Text style={styles.welcome}>
@@ -18,7 +18,7 @@ class App extends Component {
         <Webview localhost={false}
           injectedJavaScript={inject}
           onBridgeMessage={this.onBridgeMessage}
-          style={{ flex: 0 }}
+          style={{ flex: 1 }}
           url={url} />
      </View>
     )
