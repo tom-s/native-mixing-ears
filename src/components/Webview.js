@@ -83,7 +83,7 @@ export default CrosswalkWebView
 'use strict'
 
 import React, { PropTypes } from 'react'
-import ReactNative, { requireNativeComponent, View, StyleSheet } from 'react-native'
+import ReactNative, { requireNativeComponent, View, DeviceEventEmitter } from 'react-native'
 import resolveAssetSource from 'resolveAssetSource'
 
 const {
@@ -100,6 +100,7 @@ var CrosswalkWebView = React.createClass({
     onNavigationStateChange: PropTypes.func,
     url:                     PropTypes.string,
     injectedJavaScript:      PropTypes.string,
+    onBridgeMessage:         PropTypes.func,
     source:                  PropTypes.oneOfType([
       PropTypes.shape({
         uri: PropTypes.string // uri to load in webview
@@ -118,6 +119,17 @@ var CrosswalkWebView = React.createClass({
     }
   },
 
+  componentWillMount: function() {
+    const { onBridgeMessage } = this.props
+    DeviceEventEmitter.addListener("crosswalkWebViewBridgeMessage", (body) => {
+      const { onBridgeMessage } = this.props
+      const { message } = body
+      if (onBridgeMessage) {
+        onBridgeMessage(message)
+      }
+    })
+  },
+
   render () {
     var source = this.props.source || {}
     if (this.props.url) {
@@ -128,7 +140,7 @@ var CrosswalkWebView = React.createClass({
         { ...this.props }
         ref={ WEBVIEW_REF }
         source={resolveAssetSource(source)}
-        onNavigationStateChange={ this.onNavigationStateChange } />
+      />
     )
   },
 
@@ -141,6 +153,15 @@ var CrosswalkWebView = React.createClass({
       this.getWebViewHandle(),
       UIManager.NativeCrosswalkWebView.Commands.reload,
       null
+    )
+  },
+
+  sendToBridge (message) {
+    const strMessage = JSON.stringify(message)
+    UIManager.dispatchViewManagerCommand(
+      this.getWebViewHandle(),
+      UIManager.CrosswalkWebView.Commands.sendToBridge,
+      [strMessage]
     )
   }
 })
