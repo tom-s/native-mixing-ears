@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import ReactNative, { findNodeHandle, requireNativeComponent, View, DeviceEventEmitter } from 'react-native'
 import resolveAssetSource from 'resolveAssetSource'
-import Reactotron from 'reactotron'
 
 const {
   NativeModules: { UIManager, CrosswalkWebViewManager: { JSNavigationScheme } }
@@ -35,7 +34,7 @@ const CrosswalkWebView = React.createClass({
       this.sendToBridge({
         action: "PLAY",
         payload: {
-          soundId: 'drums'
+          sound: 'techno.wav'
         }
       })
     }, 2000)

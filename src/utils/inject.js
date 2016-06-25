@@ -1,13 +1,10 @@
-import drumsSound from 'nativeMixing/assets/drums'
-import decodeArrayBuffer from 'nativeMixing/src/utils/base64Binary'
-
-const inject = (window, sounds, decodeArrayBuffer) => {
+const inject = (window) => {
   // create web audio api context
   let audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 
 
   const play = (payload) => {
-    const { soundId } = payload
+    const { sound } = payload
 
     const playSound = (buffer) => {
       const mySource = audioCtx.createBufferSource()
@@ -16,16 +13,24 @@ const inject = (window, sounds, decodeArrayBuffer) => {
       mySource.start(0)
     }
 
-    const loadSound = (soundId) => {
-      const buff = decodeArrayBuffer(sounds[soundId])
-      audioCtx.decodeAudioData(buff, (buffer) => {
-        playSound(buffer)
-      }, (e) => {
-        alert('error decoding' + e)
-      })
+    const loadSound = (sound) => {
+      const request = new XMLHttpRequest()
+      const url = `file:///android_asset/sounds/${sound}`
+      request.responseType = 'arraybuffer'
+      request.open('GET', url, true)
+      request.responseType = 'arraybuffer'
+
+      request.onload = () => {
+        audioCtx.decodeAudioData(request.response, (buffer) => {
+          playSound(buffer)
+        }, (e) => {
+          alert('error decoding' + e)
+        })
+      }
+      request.send()
     }
 
-    loadSound(soundId)
+    loadSound(sound)
   }
 
   const pause = (payload) => {
@@ -51,11 +56,7 @@ const inject = (window, sounds, decodeArrayBuffer) => {
  // add dependancies
 const wrappedInject = `
     var fn = ${inject}
-    var sounds = {
-     "drums": "${drumsSound}"
-    };
-    var decodeArrayBuffer = ${decodeArrayBuffer}
-    fn(window, sounds, decodeArrayBuffer)
+    fn(window)
 `
 
 export default wrappedInject
