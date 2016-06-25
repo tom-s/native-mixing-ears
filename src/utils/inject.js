@@ -1,5 +1,5 @@
-import drumsSound from '3dears/assets/drums'
-import decodeArrayBuffer from '3dears/src/utils/base64Binary'
+import drumsSound from 'nativeMixing/assets/drums'
+import decodeArrayBuffer from 'nativeMixing/src/utils/base64Binary'
 
 const inject = (window, sounds, decodeArrayBuffer) => {
   // create web audio api context

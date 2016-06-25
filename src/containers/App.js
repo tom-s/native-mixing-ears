@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import AppComponent from '3dears/src/components/App'
+import AppComponent from 'nativeMixing/src/components/App'
 
 const mapStateToProps = () => ({})
 

@@ -1,9 +1,11 @@
-//import Reactotron from 'reactotron'
+import Reactotron from 'reactotron'
 import Root from './src/containers/Root'
 import { AppRegistry } from 'react-native'
 
 // Reactotron
-//Reactotron.connect({enabled: __DEV__})
+Reactotron.connect()
+
+Reactotron.log('start')
 
 // Init app
-AppRegistry.registerComponent('3dears', () => Root)
+AppRegistry.registerComponent('nativeMixing', () => Root)

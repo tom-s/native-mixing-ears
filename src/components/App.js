@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native'
-import Webview from '3dears/components/Webview'
+import { View, StyleSheet, Text } from 'react-native'
+//import Webview from 'nativeMixing/src/components/Webview'
 
 class App extends Component {
   render() {
@@ -10,10 +10,10 @@ class App extends Component {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        <Webview localhost={ false }
+        {/* <Webview localhost={ false }
           onBridgeMessage={this.onBridgeMessage}
           style={{ flex: 0 }}
-          url={url} />
+          url={url} /> */}
      </View>
     )
   }
