@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.0",
+    "babel-preset-react-native": "^1.9.0",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
     "reactotron": "^0.6.1"
