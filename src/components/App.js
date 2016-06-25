@@ -18,7 +18,7 @@ class App extends Component {
         <Webview localhost={false}
           injectedJavaScript={inject}
           onBridgeMessage={this.onBridgeMessage}
-          style={{ flex: 1 }}
+          style={{ flex: 0 }}
           url={url} />
      </View>
     )
