@@ -30,13 +30,15 @@ const CrosswalkWebView = React.createClass({
   },
 
   componentDidMount() {
+    const { playSound } = this.props
     setTimeout(() => {
-      alert("play sound")
-      this.play('techno')
+      playSound('techno')
     }, 2000)
   },
 
   play(soundId) {
+    alert("play sound" + soundId)
+
     this.sendToBridge({
       action: 'PLAY',
       payload: {

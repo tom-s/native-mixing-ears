@@ -1,1 +1,1 @@
-export const SOUND_PLAY = 'SOUND_PLAY'
+export const PLAY_SOUND = 'PLAY_SOUND'

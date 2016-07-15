@@ -1,8 +1,8 @@
-import { SOUND_PLAY } from 'nativeMixing/src/actions/types'
+import { PLAY_SOUND } from 'nativeMixing/src/actions/types'
 
 const sounds = (state = { current: null, all:{}}, { type, payload }) => {
   switch (type) {
-    case SOUND_PLAY:
+    case PLAY_SOUND:
       const { id } = payload
       return {
         ...state,
