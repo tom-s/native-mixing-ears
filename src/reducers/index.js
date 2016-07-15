@@ -1,5 +1,8 @@
 import { combineReducers } from "redux"
+import sounds from './sounds'
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+  sounds
+})
 
 export default rootReducer

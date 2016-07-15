@@ -29,24 +29,37 @@ const CrosswalkWebView = React.createClass({
     ...View.propTypes
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     setTimeout(() => {
-      this.sendToBridge({
-        action: "PLAY",
-        payload: {
-          sound: 'techno.wav'
-        }
-      })
+      alert("play sound")
+      this.play('techno')
     }, 2000)
   },
 
-  getDefaultProps () {
+  play(soundId) {
+    this.sendToBridge({
+      action: 'PLAY',
+      payload: {
+        sound: soundId
+      }
+    })
+  },
+
+  componentWillReceiveProps(newProps) {
+    const { currentSound } = newProps
+    const { currentSound: previousCurrentSound } = this.props
+    if(currentSound && currentSound !== previousCurrentSound) {
+      this.play(currentSound.id)
+    }
+  },
+
+  getDefaultProps() {
     return {
       localhost: false
     }
   },
 
-  componentWillMount: function() {
+  componentWillMount() {
     const { onBridgeMessage } = this.props
     DeviceEventEmitter.addListener("crosswalkWebViewBridgeMessage", (body) => {
       const { message } = body

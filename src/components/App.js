@@ -4,7 +4,7 @@ import Reactotron from 'reactotron'
 import inject from 'nativeMixing/src/utils/inject'
 
 // Components
-import Webview from 'nativeMixing/src/components/Webview'
+import Webview from 'nativeMixing/src/containers/Webview'
 import Drawer from 'react-native-drawer'
 import SidePanel from 'nativeMixing/src/components/SidePanel'
 

@@ -37,3 +37,6 @@ npm-debug.log
 buck-out/
 \.buckd/
 android/keystores/debug.keystore
+
+# Visual studio
+.history/

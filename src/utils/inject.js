@@ -7,6 +7,7 @@ const inject = (window) => {
     const { sound } = payload
 
     const playSound = (buffer) => {
+      // @todo: should stop all currently playing sound
       const mySource = audioCtx.createBufferSource()
       mySource.buffer = buffer
       mySource.connect(audioCtx.destination)
@@ -15,7 +16,7 @@ const inject = (window) => {
 
     const loadSound = (sound) => {
       const request = new window.XMLHttpRequest()
-      const url = `file:///android_asset/sounds/${sound}`
+      const url = `file:///android_asset/sounds/${sound}.wav`
       request.responseType = 'arraybuffer'
       request.open('GET', url, true)
       request.responseType = 'arraybuffer'
