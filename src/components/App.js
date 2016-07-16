@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import Reactotron from 'reactotron'
 import inject from 'nativeMixing/src/utils/inject'
+import codePush from 'react-native-code-push'
 
 // Components
 import Webview from 'nativeMixing/src/containers/Webview'
@@ -10,8 +10,11 @@ import SidePanel from 'nativeMixing/src/components/SidePanel'
 
 class App extends Component {
   componentDidMount() {
-    Reactotron.log('start')
+    // Try to sync to check it works
+    //console.log("here try sync")
+    //codePush.sync()
   }
+
   render() {
     const url = 'file:///android_asset/webview.html'
     return (

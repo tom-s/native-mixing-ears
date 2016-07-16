@@ -3,7 +3,9 @@ import codePushSaga from 'react-native-code-push-saga'
 
 function* rootSaga() {
   yield [
-    fork(codePushSaga)
+    fork(codePushSaga, {
+      syncOnInterval: 10 // every 10 seconds
+    })
   ]
 }
 
