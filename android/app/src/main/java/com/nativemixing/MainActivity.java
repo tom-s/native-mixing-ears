@@ -2,6 +2,7 @@ package com.nativemixing;
 
 import com.facebook.react.ReactActivity;
 import com.microsoft.codepush.react.CodePush;
+import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 

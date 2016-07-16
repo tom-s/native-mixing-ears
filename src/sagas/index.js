@@ -1,5 +1,5 @@
 import { fork } from 'redux-saga/effects'
-import codePushSaga from "react-native-code-push-saga"
+import codePushSaga from 'react-native-code-push-saga'
 
 function* rootSaga() {
   yield [
