@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node_modules/react-native/packager/packager.sh",
-    "lint": "eslint --ext .js,.jsx src"
+    "test": "npm run lint && npm run mocha",
+    "test:watch": "npm run test -- --watch",
+    "mocha": "node_modules/.bin/mocha --compilers js:babel-core/register tests/mocha/**/*Spec.js --recursive",
+    "lint": "node_modules/.bin/eslint src --ext .js --fix"
   },
   "dependencies": {
     "ramda": "^0.21.0",
@@ -21,9 +24,13 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.0",
+    "babel-plugin-module-alias": "^1.5.0",
     "babel-preset-react-native": "^1.9.0",
+    "chai": "^3.5.0",
+    "deep-freeze": "0.0.1",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
+    "mocha": "^2.5.3",
     "reactotron": "^0.6.1"
   }
 }

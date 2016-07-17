@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import inject from 'nativeMixing/src/utils/inject'
-import codePush from 'react-native-code-push'
+//import codePush from 'react-native-code-push'
 
 // Components
 import Webview from 'nativeMixing/src/containers/Webview'
@@ -55,8 +55,8 @@ class App extends Component {
     this._drawer.open()
   }
 
-  onBridgeMessage(msg) {
-    alert('received message ' + msg)
+  onBridgeMessage() {
+    //alert('received message ' + msg)
   }
 }
 

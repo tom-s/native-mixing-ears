@@ -5,7 +5,6 @@ import * as actionCreators from 'nativeMixing/src/actions/creators'
 
 const mapStateToProps = (state) => {
   const currentSound = getCurrentSound(state)
-  console.log("current Sound", currentSound)
   return {
     currentSound
   }

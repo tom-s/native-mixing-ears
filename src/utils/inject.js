@@ -21,8 +21,8 @@ const inject = (window) => {
     sources.push(mySource)
   }
 
-  const pauseSound = (sound) => {
-    alert('todo')
+  const pauseSound = () => {
+    //alert('todo')
   }
 
   const loadSound = (sound) => {
@@ -35,8 +35,8 @@ const inject = (window) => {
     request.onload = () => {
       audioCtx.decodeAudioData(request.response, (buffer) => {
         playSound(buffer)
-      }, (e) => {
-        alert('error decoding' + e)
+      }, () => {
+        //alert('error decoding')
       })
     }
     request.send()

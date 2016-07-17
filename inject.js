@@ -19,11 +19,11 @@ const inject = (window, sounds, decodeArrayBuffer) => {
     const loadSound = (soundId) => {
       const buff = decodeArrayBuffer(sounds[soundId])
       audioCtx.decodeAudioData(buff, (buffer) => {
-          playSound(buffer)
-        }, (e) => {
-          alert('error')
-          alert('error decoding' + e)
-        })
+        playSound(buffer)
+      }, (e) => {
+        alert('error')
+        alert('error decoding' + e)
+      })
     }
 
     loadSound('drums')
