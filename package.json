@@ -7,7 +7,8 @@
     "test": "npm run lint && npm run mocha",
     "test:watch": "npm run test -- --watch",
     "mocha": "node_modules/.bin/mocha --compilers js:babel-core/register tests/mocha/**/*Spec.js --recursive",
-    "lint": "node_modules/.bin/eslint src --ext .js --fix"
+    "lint": "node_modules/.bin/eslint src --ext .js --fix",
+    "precommit" : [ "npm run test" ]
   },
   "dependencies": {
     "ramda": "^0.21.0",
@@ -31,6 +32,7 @@
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
     "mocha": "^2.5.3",
+    "precommit": "^1.2.0",
     "reactotron": "^0.6.1"
   }
 }
