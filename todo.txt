@@ -1,4 +1,4 @@
 TODO:
-- résoudre les problèmes d'import avec absolute path
-> vérifier si c'est un update d'une librairie qui a causé ce problème ?
-> probablement !
+- résoudre les problèmes d'import avec absolute path (mac uniquement)
+- faire le routing
+- faire un bouton pour ouvrir le menu
