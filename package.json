@@ -17,7 +17,7 @@
     "react-native-code-push": "^1.13.5-beta",
     "react-native-code-push-saga": "^1.0.0",
     "react-native-drawer": "^2.2.4",
-    "react-native-webview-crosswalk": "git://github.com/tom-s/react-native-webview-crosswalk.git#master",
+    "react-native-webview-crosswalk": "^0.2.5",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
