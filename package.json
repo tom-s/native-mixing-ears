@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "ramda": "^0.21.0",
-    "react": "15.1.0",
+    "react": "^15.2.1",
     "react-native": "^0.28",
     "react-native-code-push": "^1.13.5-beta",
     "react-native-code-push-saga": "^1.0.0",

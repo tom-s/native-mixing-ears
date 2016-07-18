@@ -1,0 +1,4 @@
+TODO:
+- résoudre les problèmes d'import avec absolute path
+> vérifier si c'est un update d'une librairie qui a causé ce problème ?
+> probablement !
