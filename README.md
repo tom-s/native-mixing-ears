@@ -8,4 +8,8 @@ node_modules/.bin/reactotron
 npm run start
 
 # Run the app on device
+npm run start
 react-native run-android
+
+# Open device
+cd /home/../Android/tools/avd
