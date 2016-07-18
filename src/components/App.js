@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, Navigator } from 'react-native'
 import inject from 'nativeMixing/src/utils/inject'
 //import codePush from 'react-native-code-push'
 
 // Components
-import Webview from 'nativeMixing/src/containers/Webview'
 import Drawer from 'react-native-drawer'
+import Webview from 'nativeMixing/src/containers/Webview'
 import SidePanel from 'nativeMixing/src/components/SidePanel'
 
 class App extends Component {

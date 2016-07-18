@@ -2,7 +2,7 @@
   "presets": ["react-native"],
   "plugins": [
     ["module-alias", [
-      { "src": "./", "expose": "nativeMixing" }
+      { "src": ".", "expose": "nativeMixing" }
     ]]
   ]
 }

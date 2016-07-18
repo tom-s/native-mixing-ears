@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createLogger from 'redux-logger'
-import rootReducer from '../reducers'
-import reactotron from 'reactotron'
+import rootReducer from 'nativeMixing/src/reducers'
+//import reactotron from 'reactotron'
 import sagaMiddleware from 'redux-saga'
-import sagas from '../sagas'
+import sagas from 'nativeMixing/src/sagas'
 
 const loggerMiddleware = createLogger()
 
@@ -12,8 +12,8 @@ export default () => {
     applyMiddleware(
       loggerMiddleware,
       sagaMiddleware(...sagas)
-    ),
-    reactotron.storeEnhancer()
+    )
+    //reactotron.storeEnhancer()
   )
 
   return createStore(rootReducer, enhancer)

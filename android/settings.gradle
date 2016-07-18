@@ -1,5 +1,5 @@
 rootProject.name = 'nativeMixing'
 
-include ':CrosswalkWebView', ':app', ':react-native-code-push'
+include ':CrosswalkWebView', ':react-native-code-push', ':app'
 project(':CrosswalkWebView').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webview-crosswalk')
 project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
