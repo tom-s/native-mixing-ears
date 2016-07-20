@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, View, TouchableWithoutFeedback, Text } from 'react-native'
 
 const USER_TOGGLE = 'user.toggle'
 const TARGET_TOGGLE = 'target.toggle'
@@ -8,13 +8,16 @@ class TargetUserToggle extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      toggled: null
+      toggled: null,
+      canPause: false
     }
   }
 
   render() {
-    const { toggled } = this.state
-
+    const { toggled, canPause } = this.state
+    const playPauseButton = (canPause)
+      ? <Text style={styles.pauseIcon}> Pause </Text>
+      : <Text style={styles.playIcon}> Play </Text>
     return (
       <View style={styles.wrapper}>
         <TouchableWithoutFeedback onPress={this._toggleTarget.bind(this)} >
@@ -24,7 +27,9 @@ class TargetUserToggle extends Component {
           <View style={[ styles.user, toggled === USER_TOGGLE && styles.activeToggle]}  />
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this._togglePlay.bind(this)} >
-          <View style={[ styles.play ]}  />
+          <View style={[ styles.play ]}>
+            {playPauseButton}
+          </View>
         </TouchableWithoutFeedback>
       </View>
     )
@@ -45,6 +50,10 @@ class TargetUserToggle extends Component {
   }
 
   _togglePlay() {
+    const { canPause } = this.state
+    this.setState({
+      canPause: !canPause
+    })
   }
 }
 
@@ -91,6 +100,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: playWidth,
     borderBottomRightRadius: playWidth,
     backgroundColor: 'black'
+  },
+  pauseIcon: {
+    color: 'white'
+  },
+  playIcon: {
+    color: 'white'
   }
 })
 
