@@ -1,11 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+
+// Components
+import TargetUserToggle from 'nativeMixing/src/containers/TargetUserToggle'
 
 const Home = () => {
   return (
-    <Text key='home' style={styles.welcome}>
-      This is the main page
-     </Text>
+    <View>
+      <Text key='home' style={styles.welcome}>
+        This is the main page
+      </Text>
+      <TargetUserToggle />
+   </View>
   )
 }
 
