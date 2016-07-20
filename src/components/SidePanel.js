@@ -6,18 +6,25 @@ import {
   TouchableOpacity
 } from 'react-native'
 
+import * as routes from 'nativeMixing/src/config/routes'
+
 export default class SidePanel extends Component {
   static propTypes = {
     closeDrawer: PropTypes.func.isRequired
   };
 
   render() {
-    let {closeDrawer} = this.props
+    let { closeDrawer, goTo } = this.props
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.controlText}>Control Panel</Text>
         <TouchableOpacity style={styles.button} onPress={closeDrawer}>
           <Text>Close Drawer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          goTo(routes.OTHER)
+        }}>
+          <Text>Go to another page</Text>
         </TouchableOpacity>
       </ScrollView>
     )
