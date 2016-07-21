@@ -51,6 +51,8 @@ class App extends Component {
         closedDrawerOffset={0}
         captureGestures={true}
         acceptDoubleTap={true}
+        acceptPan={false}
+        panOpenMask={0.1}
         content={<SidePanel closeDrawer={this.closeDrawer} goTo={this._goTo.bind(this)} />}>
         <Navigator ref={(ref) => this._navigator = ref} initialRoute={{id: routes.HOME }}
             renderScene={this._renderScene.bind(this)}

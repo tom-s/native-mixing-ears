@@ -2,26 +2,85 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import NativeSlider from 'react-native-slider'
 
+
+const Labels = ({width=0, values=[]}) => {
+  const sliderWidth = 20
+  width = width - sliderWidth
+  // Calculte position of all labels
+  const valuesWithPositions = []
+  values.reduce((memo, val, index) => {
+    const { label } = val
+    const isLast = (index === (values.length - 1))
+    const itemWidth = (isLast)
+      ? sliderWidth
+      : (width / (values.length - 1))
+    valuesWithPositions.push({
+      label,
+      x: memo,
+      width: itemWidth
+    })
+    return memo + itemWidth
+  }, 0)
+
+
+  return (
+    <View style={styles.labels}>
+      {valuesWithPositions.map((val, index) => {
+        const { width: itemWidth, label } = val
+        const style = {
+          width: itemWidth,
+          textAlign: 'left'
+        }
+        const containerStyle = {
+          width: itemWidth,
+          padding: 3
+        }
+        return <View key={index} style={containerStyle}>
+          <Text style={[styles.label, style]}> {label} </Text>
+        </View>
+      })}
+    </View>
+  )
+}
 class Slider extends Component {
   constructor(props) {
     super(props)
-    const { defaultValue = 0.2 } = props
+    const { values = [] } = props // [{ value: 1, label: 'this is 1'}]
+    this.sliderWidth = 0
     this.state = {
-      value: defaultValue
+      value: 0,
+      minimumValue: 0,
+      maximumValue: values.length
+        ? values.length - 1
+        : 0,
+      step: 1
     }
   }
 
+
   render() {
-    const { value } = this.state
+    const { values } = this.props
+    const { value, minimumValue, maximumValue } = this.state
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onLayout={({nativeEvent: { layout: { width }}}) => {
+        this.sliderWidth = width
+      }}>
         <NativeSlider
           value={value}
+          minimumValue={minimumValue}
+          maximumValue={maximumValue}
           trackStyle={styles.track}
-          onValueChange={(val) => this.setState({value: val})} />
-        <Text>Value: {value}</Text>
+          step={1}
+          onValueChange={this._onValueChange.bind(this)} />
+        <Labels width={this.sliderWidth} values={values} />
       </View>
     )
+  }
+
+  _onValueChange(val) {
+    const { values, onValueChange = () => {} } = this.props
+    this.setState({value: val})
+    onValueChange(values[val])
   }
 }
 
@@ -35,6 +94,12 @@ const styles = StyleSheet.create({
   },
   track: {
 
+  },
+  labels: {
+    flexDirection: 'row'
+  },
+  label: {
+    color: 'black'
   }
 })
 

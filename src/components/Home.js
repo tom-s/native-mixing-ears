@@ -6,6 +6,10 @@ import TargetUserToggle from 'nativeMixing/src/containers/TargetUserToggle'
 import Slider from 'nativeMixing/src/components/Slider'
 import PlayPauseButton from 'nativeMixing/src/components/PlayPauseButton'
 
+const sliderValues = [0, 2, 3].map(val => ({
+  value: val,
+  label: val
+}))
 const Home = () => {
   return (
     <View>
@@ -14,7 +18,9 @@ const Home = () => {
       </Text>
       <PlayPauseButton />
       <TargetUserToggle />
-      <Slider defaultValue={0.5} />
+      <Slider values={sliderValues} onValueChange={() => {
+        //console.log("new slider value is", val)
+      }}/>
    </View>
   )
 }

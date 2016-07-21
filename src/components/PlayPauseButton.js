@@ -38,7 +38,6 @@ class PlayPauseButton extends Component {
   }
 
   _togglePaused() {
-    console.log("set paused to ", !paused)
 
     const { paused, pause, play } = this.state
     if (paused) {
