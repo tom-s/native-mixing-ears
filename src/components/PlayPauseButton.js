@@ -1,48 +1,22 @@
 import React, { Component } from 'react'
+import { Motion, StaggeredMotion, spring } from 'react-motion'
 import Svg,{
-    Circle,
-    Ellipse,
-    G,
-    LinearGradient,
-    RadialGradient,
-    Line,
-    Path,
-    Polygon,
-    Polyline,
-    Rect,
-    Symbol,
-    Text,
-    Use,
-    Defs,
-    Stop
+    Path
 } from 'react-native-svg'
+const animationConfig = {stiffness: 170, damping: 9}
+const fadeConfig = {stiffness: 10, damping: 9}
 
 class PlayPauseButton extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
-            <Svg
-                height="100"
-                width="100"
-            >
-                <Circle
-                    cx="50"
-                    cy="50"
-                    r="45"
-                    stroke="blue"
-                    strokeWidth="2.5"
-                    fill="green"
-                />
-                <Rect
-                    x="15"
-                    y="15"
-                    width="70"
-                    height="70"
-                    stroke="red"
-                    strokeWidth="2"
-                    fill="yellow"
-                />
-            </Svg>
-        )
+      <Svg width="200" height="200" viewBox="0 0 36 36" >
+          <Path d="M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26" />
+          <Path d="M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28" />
+      </Svg>
+    )
   }
 }
 
