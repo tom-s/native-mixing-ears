@@ -1,4 +1,5 @@
 <resources>
+
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">m-Bpj5CBgrXfnP_skMir8Ot54eigV1EJSFmwZ</string>
     <string name="app_name">nativeMixing</string>
 </resources>

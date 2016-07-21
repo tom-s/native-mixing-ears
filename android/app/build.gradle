@@ -128,6 +128,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-svg')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile (name: "xwalk_core_library-18.48.477.13", ext: "aar")
