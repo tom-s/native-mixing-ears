@@ -3,7 +3,6 @@ import {TouchableWithoutFeedback } from 'react-native'
 import { Motion, spring } from 'react-motion'
 import Svg,{ Path} from 'react-native-svg'
 const animationConfig = {stiffness: 70, damping: 9}
-//const fadeConfig = {stiffness: 10, damping: 9}
 
 class PlayPauseButton extends Component {
   constructor(props) {
