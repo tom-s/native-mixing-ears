@@ -603,7 +603,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nativeMixing.app/nativeMixing";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -620,7 +619,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nativeMixing.app/nativeMixing";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
