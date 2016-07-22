@@ -11,6 +11,7 @@
     "precommit": "npm test"
   },
   "dependencies": {
+    "pouchdb-react-native": "^5.4.10",
     "ramda": "^0.21.0",
     "react": "^15.2.1",
     "react-addons-shallow-compare": "^15.2.1",

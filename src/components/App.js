@@ -27,11 +27,15 @@ class App extends Component {
     this._navigator = null
   }
 
+  componentWillMount() {
+    const { init } = this.props
+    init()
+  }
+
   componentDidMount() {
     // Try to sync to check it works
     //console.log("here try sync")
     //codePush.sync()
-
   }
 
   render() {

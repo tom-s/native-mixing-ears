@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 // Components
 const SessionProgress = ({level = 1, progress = 0, score = 0}) => {
   return (
-    <View>
+    <View style={styles.container}>
       <View>
         <Text>LEVEL</Text>
         <Text>{level}</Text>
@@ -24,11 +24,7 @@ const SessionProgress = ({level = 1, progress = 0, score = 0}) => {
 }
 
 const styles = StyleSheet.create({
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  }
+  container: {}
 })
 
 export default SessionProgress

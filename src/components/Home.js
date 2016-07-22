@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 
 // Components
 import SessionProgress from 'nativeMixing/src/components/SessionProgress'
