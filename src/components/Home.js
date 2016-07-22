@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 // Components
+import SessionProgress from 'nativeMixing/src/components/SessionProgress'
 import TargetUserToggle from 'nativeMixing/src/containers/TargetUserToggle'
 import Slider from 'nativeMixing/src/components/Slider'
 import PlayPauseButton from 'nativeMixing/src/components/PlayPauseButton'
@@ -13,9 +14,7 @@ const sliderValues = [0, 1, 2, 3, 4].map(val => ({
 const Home = () => {
   return (
     <View>
-      <Text key='home' style={styles.welcome}>
-        This is the main page
-      </Text>
+      <SessionProgress />
       <PlayPauseButton />
       <TargetUserToggle />
       <Slider values={sliderValues} onValueChange={() => {
@@ -24,13 +23,5 @@ const Home = () => {
    </View>
   )
 }
-
-const styles = StyleSheet.create({
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  }
-})
 
 export default Home
