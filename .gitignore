@@ -40,3 +40,7 @@ android/keystores/debug.keystore
 
 # Visual studio
 .history/
+
+# Signing key
+my-release-key.keystore
+android/app/my-release-key.keystore
