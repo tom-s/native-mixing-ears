@@ -1,4 +1,6 @@
 TODO:
-- résoudre les problèmes d'import avec absolute path (mac uniquement)
-- faire le routing
-- faire un bouton pour ouvrir le menu
+- faire version freemium
+> faire page choix exercice
+
+- faire ab testing
+> faire le choix en fct du android id

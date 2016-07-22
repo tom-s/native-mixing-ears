@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import NativeSlider from 'react-native-slider'
-
+import NativeSlider from 'nativeMixing/src/components/common/Slider'
 
 const Labels = ({width=0, values=[]}) => {
   const sliderWidth = 20
