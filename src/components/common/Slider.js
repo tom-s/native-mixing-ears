@@ -201,8 +201,11 @@ var Slider = React.createClass({
         // The user has released all touches while this view is the
         // responder. This typically means a gesture has succeeded
         const { nativeEvent: { locationX } } = evt
-        this._setCurrentValue(this._getTapValue(locationX))
-        this._fireChangeEvent('onValueChange')
+        const tapValue = this._getTapValue(locationX)
+        if (tapValue) {
+          this._setCurrentValue()
+          this._fireChangeEvent('onValueChange')
+        }
       }
     })
   },
