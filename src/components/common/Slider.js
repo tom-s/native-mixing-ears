@@ -195,6 +195,16 @@ var Slider = React.createClass({
       onPanResponderTerminationRequest: this._handlePanResponderRequestEnd,
       onPanResponderTerminate: this._handlePanResponderEnd
     })
+    this._panTrackResponder = PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderRelease: (evt) => {
+        // The user has released all touches while this view is the
+        // responder. This typically means a gesture has succeeded
+        const { nativeEvent: { locationX } } = evt
+        this._setCurrentValue(this._getTapValue(locationX))
+        this._fireChangeEvent('onValueChange')
+      }
+    })
   },
   componentWillReceiveProps: function(nextProps) {
     var newValue = nextProps.value
@@ -259,18 +269,20 @@ var Slider = React.createClass({
     var touchOverflowStyle = this._getTouchOverflowStyle()
 
     return (
-      <View {...other} style={[mainStyles.container, style]} onLayout={this._measureContainer}>
+      <View {...other} style={[mainStyles.container, style]} onLayout={this._measureContainer} {...this._panTrackResponder.panHandlers} >
         <View
           style={[{backgroundColor: maximumTrackTintColor}, mainStyles.track, trackStyle]}
-          onLayout={this._measureTrack} />
-        <Animated.View style={[mainStyles.track, trackStyle, minimumTrackStyle]} />
-        <Animated.View
-          onLayout={this._measureThumb}
-          style={[
-            {backgroundColor: thumbTintColor, marginTop: -(trackSize.height + thumbSize.height) / 2},
-            mainStyles.thumb, thumbStyle, {left: thumbLeft, ...valueVisibleStyle}
-          ]}
-        />
+          onLayout={this._measureTrack}
+          />
+
+          <Animated.View style={[mainStyles.track, trackStyle, minimumTrackStyle]} />
+          <Animated.View
+            onLayout={this._measureThumb}
+            style={[
+              {backgroundColor: thumbTintColor, marginTop: -(trackSize.height + thumbSize.height) / 2},
+              mainStyles.thumb, thumbStyle, {left: thumbLeft, ...valueVisibleStyle}
+            ]}
+          />
         <View
           style={[defaultStyles.touchArea, touchOverflowStyle]}
           {...this._panResponder.panHandlers}>
@@ -281,6 +293,7 @@ var Slider = React.createClass({
   },
 
   _getPropsForComponentUpdate(props) {
+    /* eslint-disable no-unused-vars */
     var {
       value,
       onValueChange,
@@ -291,6 +304,7 @@ var Slider = React.createClass({
       thumbStyle,
       ...otherProps
     } = props
+    /* eslint-enable no-unused-vars */
 
     return otherProps
   },
@@ -391,6 +405,24 @@ var Slider = React.createClass({
         )
       )
     }
+  },
+
+  _closest(val, list) {
+    const closest = list.reduce((prev, curr) => {
+      return (Math.abs(curr - val) < Math.abs(prev - val) ? curr : prev)
+    }, 0)
+    return list.findIndex(val => val === closest)
+  },
+
+  _getTapValue(locationX: number) {
+    const { trackSize: { width: trackWidth } } = this.state
+    const { step, minimumValue, maximumValue } = this.props
+    const numSteps = (maximumValue - minimumValue / step)
+    const positions = []
+    for (let i=0; i<=numSteps; i++) {
+      positions.push(step * i * (trackWidth / numSteps))
+    }
+    return this._closest(locationX, positions)
   },
 
   _getCurrentValue() {
