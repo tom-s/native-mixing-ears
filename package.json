@@ -11,8 +11,8 @@
     "precommit": "npm test"
   },
   "dependencies": {
+    "lodash": "^4.13.1",
     "pouchdb-react-native": "^5.4.10",
-    "ramda": "^0.21.0",
     "react": "^15.2.1",
     "react-addons-shallow-compare": "^15.2.1",
     "react-art": "^0.15.1",

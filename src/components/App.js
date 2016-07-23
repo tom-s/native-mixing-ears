@@ -9,7 +9,7 @@ import Drawer from 'react-native-drawer'
 import Webview from 'nativeMixing/src/containers/Webview'
 import SidePanel from 'nativeMixing/src/components/SidePanel'
 import Home from 'nativeMixing/src/components/Home'
-import Other from 'nativeMixing/src/components/Other'
+import Exercise from 'nativeMixing/src/components/Exercise'
 
 // Navigator config
 const baseConfig = Navigator.SceneConfigs.FloatFromRight
@@ -68,7 +68,7 @@ class App extends Component {
         acceptPan={false}
         panOpenMask={0.1}
         content={<SidePanel closeDrawer={this.closeDrawer} goTo={this._goTo.bind(this)} />}>
-        <Navigator ref={(ref) => this._navigator = ref} initialRoute={{id: routes.HOME }}
+        <Navigator ref={(ref) => this._navigator = ref} initialRoute={{id: routes.EXERCISE }}
             renderScene={this._renderScene.bind(this)}
             configureScene={this._configureScene.bind(this)} />
         <Webview key='webview' localhost={false}
@@ -103,8 +103,8 @@ class App extends Component {
       case routes.HOME:
         page = <Home navigator={navigator} />
         break
-      case routes.OTHER:
-        page = <Other navigator={navigator} />
+      case routes.EXERCISE:
+        page = <Exercise navigator={navigator} />
         break
     }
     return (

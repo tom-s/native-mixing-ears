@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, TouchableWithoutFeedback, Text } from 'react-native'
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
+import PlayPauseButton from 'nativeMixing/src/components/PlayPauseButton'
 
 const USER_TOGGLE = 'user.toggle'
 const TARGET_TOGGLE = 'target.toggle'
@@ -8,16 +9,13 @@ class TargetUserToggle extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      toggled: null,
-      canPause: false
+      toggled: null
     }
   }
 
   render() {
-    const { toggled, canPause } = this.state
-    const playPauseButton = (canPause)
-      ? <Text style={styles.pauseIcon}> Pause </Text>
-      : <Text style={styles.playIcon}> Play </Text>
+    const { toggled } = this.state
+
     return (
       <View style={styles.wrapper}>
         <TouchableWithoutFeedback onPress={this._toggleTarget.bind(this)} >
@@ -28,7 +26,9 @@ class TargetUserToggle extends Component {
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this._togglePlay.bind(this)} >
           <View style={[ styles.play ]}>
-            {playPauseButton}
+            <View style={styles.buttonWrapper}>
+              <PlayPauseButton />
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -99,13 +99,21 @@ const styles = StyleSheet.create({
     borderTopRightRadius: playWidth,
     borderBottomLeftRadius: playWidth,
     borderBottomRightRadius: playWidth,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    transform: [
+      {rotate: '-45deg'}
+    ]
   },
   pauseIcon: {
     color: 'white'
   },
   playIcon: {
     color: 'white'
+  },
+  buttonWrapper: {
+    position: 'relative',
+    top: 15,
+    left: 15
   }
 })
 
