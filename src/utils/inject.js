@@ -2,7 +2,15 @@ const inject = (window) => {
   let sources = []
 
   // create web audio api context
-  let audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+  const AudioContext = window.AudioContext || window.webkitAudioContext
+  if (window.audioCtx) {
+    window.audioCtx.close()
+  }
+  try {
+    window.audioCtx = new AudioContext()
+  } catch(err) {
+    alert(err)
+  }
 
   /* Web audio API methods */
   const stopAll = () => {
@@ -14,9 +22,10 @@ const inject = (window) => {
 
   const playSound = (buffer) => {
     // @todo: should stop all currently playing sound
-    const mySource = audioCtx.createBufferSource()
+    const mySource = window.audioCtx.createBufferSource()
     mySource.buffer = buffer
-    mySource.connect(audioCtx.destination)
+    mySource.connect(window.audioCtx.destination)
+    mySource.loop = true
     mySource.start(0)
     sources.push(mySource)
   }
@@ -24,6 +33,7 @@ const inject = (window) => {
   const pauseSound = () => {
     //alert('todo')
   }
+
 
   const loadSound = (sound) => {
     const request = new window.XMLHttpRequest()
@@ -33,9 +43,8 @@ const inject = (window) => {
     request.responseType = 'arraybuffer'
 
     request.onload = () => {
-      audioCtx.decodeAudioData(request.response, (buffer) => {
+      window.audioCtx.decodeAudioData(request.response, (buffer) => {
         playSound(buffer)
-        alert("play sound")
       }, () => {
         alert('error decoding')
       })
@@ -56,7 +65,6 @@ const inject = (window) => {
 
   /* Messaging system */
   window.CrosswalkWebViewBridge.onMessage = (msg) => {
-    alert('msg' + msg)
     try {
       const { action, payload } = JSON.parse(msg)
 
@@ -64,7 +72,6 @@ const inject = (window) => {
         pause(payload)
       }
       if (action === 'PLAY') {
-        alert("action play")
         stopAll()
         play(payload)
       }
@@ -72,6 +79,7 @@ const inject = (window) => {
       //alert("error parsing")
     }
   }
+
 }
 
  // add dependancies

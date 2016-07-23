@@ -45,6 +45,10 @@ const CrosswalkWebView = React.createClass({
     })
   },
 
+  shouldComponentUpdate() {
+    return false // otherwise webview renders way too many times and causes audio context bugs
+  },
+
   componentWillReceiveProps(newProps) {
     const { currentSound } = newProps
     const { currentSound: previousCurrentSound } = this.props
@@ -62,8 +66,6 @@ const CrosswalkWebView = React.createClass({
   componentWillMount() {
     const { onBridgeMessage } = this.props
     DeviceEventEmitter.addListener("crosswalkWebViewBridgeMessage", (body) => {
-      alert('received bridge message')
-
       const { message } = body
       if (onBridgeMessage) {
         onBridgeMessage(message)

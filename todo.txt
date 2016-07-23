@@ -1,6 +1,9 @@
 TODO:
 - faire version freemium
 > faire page choix exercice
+> faire play/pause
+> appliquer les effets
+> faire la lecture de la bonne réponse
 
 - faire ab testing
 > faire le choix en fct du android id

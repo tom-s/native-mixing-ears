@@ -4,6 +4,9 @@ import {TouchableWithoutFeedback } from 'react-native'
 import Svg,{ Path} from 'react-native-svg'
 //const animationConfig = {stiffness: 70, damping: 9}
 
+const values = [
+  11,10,17, 10, 17,26 11,26 M20,10 L26,10 26,26 20,26
+]
 class PlayPauseButton extends Component {
   constructor(props) {
     super(props)
@@ -24,8 +27,8 @@ class PlayPauseButton extends Component {
     const { ...otherProps } = this.props
     const { paused } = this.state
     const button = (paused)
-      ? <Path d='M11,10 L17,10 17,26 11,26 M20,10 L26,10 26,26 20,26' fill='#FFFFFF'/>
-      : <Path d='M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28' fill='#FFFFFF' />
+      ? <Path d='M11,10 L17, 10 17,26 11,26 M20,10 L26,10 26,26 20,26' fill='#FFFFFF'/>
+      : <Path d='M11,10 L18, 13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28' fill='#FFFFFF' />
 
     return (
       <TouchableWithoutFeedback onPress={this._togglePaused.bind(this)} {...otherProps}>
