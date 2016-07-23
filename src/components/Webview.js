@@ -30,11 +30,10 @@ const CrosswalkWebView = React.createClass({
   },
 
   componentDidMount() {
-    /*
     const { playSound } = this.props
     setTimeout(() => {
-      playSound('techno')
-    }, 2000)*/
+      this.play('techno')
+    }, 2000)
   },
 
   play(soundId) {
@@ -63,6 +62,8 @@ const CrosswalkWebView = React.createClass({
   componentWillMount() {
     const { onBridgeMessage } = this.props
     DeviceEventEmitter.addListener("crosswalkWebViewBridgeMessage", (body) => {
+      alert('received bridge message')
+
       const { message } = body
       if (onBridgeMessage) {
         onBridgeMessage(message)
@@ -97,6 +98,7 @@ const CrosswalkWebView = React.createClass({
   },
 
   sendToBridge (message) {
+    console.log("send to bridge")
     const strMessage = JSON.stringify(message)
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),

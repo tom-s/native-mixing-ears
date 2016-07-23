@@ -7,9 +7,9 @@ import codePush from 'react-native-code-push'
 // Components
 import Drawer from 'react-native-drawer'
 import Webview from 'nativeMixing/src/containers/Webview'
+import Exercise from 'nativeMixing/src/containers/Exercise'
 import SidePanel from 'nativeMixing/src/components/SidePanel'
 import Home from 'nativeMixing/src/components/Home'
-import Exercise from 'nativeMixing/src/components/Exercise'
 
 // Navigator config
 const baseConfig = Navigator.SceneConfigs.FloatFromRight
@@ -89,7 +89,7 @@ class App extends Component {
   }
 
   _onBridgeMessage() {
-    //alert('received message ' + msg)
+    alert('received message ' + msg)
   }
 
   _configureScene() {

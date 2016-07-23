@@ -18,6 +18,7 @@ class Exercise extends Component {
   }
 
   componentDidMount() {
+    const { playSound } = this.props
     const exercise = generateExercise(EXERCISES_TYPES.ATTACK, LEVELS.EASY)
     const answers = {}
     Object.keys(exercise.values).forEach(key => {
@@ -30,6 +31,9 @@ class Exercise extends Component {
       exercise,
       answers
     })
+
+    // Play looping sound
+    //playSound('techno')
   }
 
   render() {
@@ -49,7 +53,6 @@ class Exercise extends Component {
               <View key={key}>
                 <Text> {key} </Text>
                 <Slider values={val} onValueChange={(val) => {
-                  //console.log("new slider value is", val)
                   this._updateAnswer(key, val)
                 }}/>
               </View>

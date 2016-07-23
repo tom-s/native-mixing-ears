@@ -35,8 +35,9 @@ const inject = (window) => {
     request.onload = () => {
       audioCtx.decodeAudioData(request.response, (buffer) => {
         playSound(buffer)
+        alert("play sound")
       }, () => {
-        //alert('error decoding')
+        alert('error decoding')
       })
     }
     request.send()
@@ -55,6 +56,7 @@ const inject = (window) => {
 
   /* Messaging system */
   window.CrosswalkWebViewBridge.onMessage = (msg) => {
+    alert('msg' + msg)
     try {
       const { action, payload } = JSON.parse(msg)
 
@@ -62,6 +64,7 @@ const inject = (window) => {
         pause(payload)
       }
       if (action === 'PLAY') {
+        alert("action play")
         stopAll()
         play(payload)
       }
