@@ -12,14 +12,23 @@ class Exercise extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      exercise: null
+      exercise: null,
+      answers: {}
     }
   }
 
   componentDidMount() {
     const exercise = generateExercise(EXERCISES_TYPES.ATTACK, LEVELS.EASY)
+    const answers = {}
+    Object.keys(exercise.values).forEach(key => {
+      const val = exercise.values[key]
+      if (val) {
+        answers[key] = val[0]
+      }
+    })
     this.setState({
-      exercise
+      exercise,
+      answers
     })
   }
 
@@ -39,14 +48,23 @@ class Exercise extends Component {
             ? (
               <View key={key}>
                 <Text> {key} </Text>
-                <Slider values={val} onValueChange={() => {
+                <Slider values={val} onValueChange={(val) => {
                   //console.log("new slider value is", val)
+                  this._updateAnswer(key, val)
                 }}/>
               </View>
             ): null
         })}
       </View>
     )
+  }
+
+  _updateAnswer(key, val) {
+    const { answers } = this.state
+    answers[key] = val
+    this.setState({
+      answers
+    })
   }
 }
 
