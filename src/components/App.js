@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Navigator } from 'react-native'
+import { View, StyleSheet, Navigator, ActivityIndicator } from 'react-native'
 import inject from 'nativeMixing/src/utils/inject'
 import * as routes from 'nativeMixing/src/config/routes'
-//import codePush from 'react-native-code-push'
+import codePush from 'react-native-code-push'
 
 // Components
 import Drawer from 'react-native-drawer'
@@ -34,11 +34,21 @@ class App extends Component {
 
   componentDidMount() {
     // Try to sync to check it works
-    //console.log("here try sync")
-    //codePush.sync()
+    codePush.sync()
   }
 
   render() {
+    const { isInitialized } = this.props
+
+    if (!isInitialized) {
+      return (
+        <ActivityIndicator
+        animating={true}
+        style={[styles.centering, {height: 80}]}
+        size="large"/>
+     )
+    }
+
     const url = 'file:///android_asset/webview.html'
 
     return (
@@ -124,6 +134,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10
+  },
+  centering: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 8
   }
 })
 

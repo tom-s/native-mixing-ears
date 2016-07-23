@@ -1,8 +1,9 @@
-import { call } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 import { takeEvery } from 'redux-saga'
 import { APP_INIT } from 'nativeMixing/src/actions/types'
 import { dbsSync, dbGet, dbPut, createDbs } from 'nativeMixing/src/utils/pouchdb'
 import DeviceInfo from 'react-native-device-info'
+import * as actionCreators from 'nativeMixing/src/actions/creators'
 
 // Init databases
 const uniqueId = `user_${DeviceInfo.getUniqueID().toLowerCase()}`
@@ -29,6 +30,8 @@ export function* init () {
   yield call(sync)
   // Init missing data
   yield call(initDb)
+  // Notify app
+  yield put(actionCreators.initSuccess())
 }
 
 function* watchSync () {

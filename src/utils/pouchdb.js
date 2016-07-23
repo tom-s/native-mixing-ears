@@ -12,7 +12,7 @@ export const createDbs = (uniqueId) => {
 
 export const dbsSync = (localDB, remoteDB) => {
   return localDB.sync(remoteDB, {
-    live: false,
+    live: false, // live option does not work
     retry: true
   }).then(() => {
     return true
