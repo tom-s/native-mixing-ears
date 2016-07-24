@@ -34,7 +34,7 @@ class App extends Component {
 
   componentDidMount() {
     // Try to sync to check it works
-    codePush.sync()
+    //codePush.sync()
   }
 
   render() {
