@@ -4,9 +4,6 @@ import {TouchableWithoutFeedback } from 'react-native'
 import Svg,{ Path} from 'react-native-svg'
 //const animationConfig = {stiffness: 70, damping: 9}
 
-const values = [
-  11,10,17, 10, 17,26 11,26 M20,10 L26,10 26,26 20,26
-]
 class PlayPauseButton extends Component {
   constructor(props) {
     super(props)
