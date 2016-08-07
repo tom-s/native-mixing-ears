@@ -8,6 +8,7 @@ const sounds = (state = { current: null, all:{}, mode: PLAY_MODES.ORIGINAL, isPl
       return {
         ...state,
         current: id,
+        isPlaying: true,
         all: {
           ...state.sounds,
           [id]: {

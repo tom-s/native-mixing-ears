@@ -25,7 +25,7 @@ describe('sounds reducer', () => {
         1: { id: 1 }
       },
       mode: PLAY_MODES.ORIGINAL,
-      isPlaying: false
+      isPlaying: true
     })
   })
 })
