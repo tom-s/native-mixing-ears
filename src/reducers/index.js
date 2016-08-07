@@ -1,10 +1,12 @@
-import { combineReducers } from "redux"
-import sounds from './sounds'
+import { combineReducers } from 'redux'
 import app from './app'
+import sounds from './sounds'
+import exercises from './exercises'
 
 const rootReducer = combineReducers({
   app,
-  sounds
+  sounds,
+  exercises
 })
 
 export default rootReducer
