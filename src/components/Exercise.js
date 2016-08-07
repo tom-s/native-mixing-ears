@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import { EXERCISES_TYPES, LEVELS } from 'nativeMixing/src/config/exercises'
-import { generateExercise } from 'nativeMixing/src/utils/exerciseGenerator'
 
 // Components
 import SessionProgress from 'nativeMixing/src/components/SessionProgress'
@@ -12,32 +10,26 @@ class Exercise extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      exercise: null,
       answers: {}
     }
   }
 
   componentDidMount() {
-    //const { playSound } = this.props
-    const exercise = generateExercise(EXERCISES_TYPES.ATTACK, LEVELS.EASY)
-    const answers = {}
-    Object.keys(exercise.values).forEach(key => {
-      const val = exercise.values[key]
-      if (val) {
-        answers[key] = val[0]
-      }
-    })
-    this.setState({
-      exercise,
-      answers
-    })
+    // Generate exercise
+    const { initExercise } = this.props
+    initExercise()
+  }
 
-    // Play looping sound
-    //playSound('techno')
+  componentWillReceiveProps(newProps) {
+    const { exercise: previousExercise } = this.props
+    const { exercise } = newProps
+    if (exercise && exercise !== previousExercise) {
+      this._init(newProps)
+    }
   }
 
   render() {
-    const { exercise } = this.state
+    const { exercise } = this.props
     if (!exercise) {
       return null
     }
@@ -60,6 +52,23 @@ class Exercise extends Component {
         })}
       </View>
     )
+  }
+
+  _init(props) {
+    // Prépare answers
+    const { exercise } = props
+    const answers = {}
+
+    Object.keys(exercise.values).forEach(key => {
+      const val = exercise.values[key]
+      if (val) {
+        answers[key] = val[0]
+      }
+    })
+
+    this.setState({
+      answers
+    })
   }
 
   _updateAnswer(key, val) {

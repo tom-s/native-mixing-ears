@@ -4,5 +4,5 @@ export const HOME = {
 }
 export const EXERCISE = {
   id: 'route.exercise',
-  title: 'Home'
+  title: 'Exercise'
 }
