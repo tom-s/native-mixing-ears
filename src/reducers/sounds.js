@@ -1,6 +1,7 @@
-import { PLAY_SOUND } from 'nativeMixing/src/actions/types'
+import { PLAY_SOUND, SWITCH_SOUND_MODE } from 'nativeMixing/src/actions/types'
+import { PLAY_MODES } from 'nativeMixing/src/config/sounds'
 
-const sounds = (state = { current: null, all:{}}, { type, payload }) => {
+const sounds = (state = { current: null, all:{}, mode: PLAY_MODES.ORIGINAL }, { type, payload }) => {
   switch (type) {
     case PLAY_SOUND:
       const { id } = payload
@@ -14,6 +15,13 @@ const sounds = (state = { current: null, all:{}}, { type, payload }) => {
           }
         }
       }
+    case SWITCH_SOUND_MODE:
+      const { mode } = payload
+      return {
+        ...state,
+        mode
+      }
+
     default:
       return state
   }

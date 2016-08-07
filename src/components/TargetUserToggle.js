@@ -1,28 +1,18 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native'
 import PlayPauseButton from 'nativeMixing/src/components/PlayPauseButton'
-
-const USER_TOGGLE = 'user.toggle'
-const TARGET_TOGGLE = 'target.toggle'
+import { PLAY_MODES } from 'nativeMixing/src/config/sounds'
 
 class TargetUserToggle extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      toggled: null
-    }
-  }
-
   render() {
-    const { toggled } = this.state
-
+    const { mode } = this.props
     return (
       <View style={styles.wrapper}>
         <TouchableWithoutFeedback onPress={this._toggleTarget.bind(this)} >
-          <View style={[ styles.target, toggled === TARGET_TOGGLE && styles.activeToggle]}  />
+          <View style={[ styles.target, mode === PLAY_MODES.TARGET && styles.activeToggle]}  />
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this._toggleUser.bind(this)} >
-          <View style={[ styles.user, toggled === USER_TOGGLE && styles.activeToggle]}  />
+          <View style={[ styles.user, mode === PLAY_MODES.CURRENT && styles.activeToggle]}  />
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={this._togglePlay.bind(this)} >
           <View style={[ styles.play ]}>
@@ -36,17 +26,15 @@ class TargetUserToggle extends Component {
   }
 
   _toggleTarget() {
-    const { toggled } = this.state
-    this.setState({
-      toggled: (toggled === TARGET_TOGGLE) ? null : TARGET_TOGGLE
-    })
+    const { mode, setSoundMode } = this.props
+    const newMode  =  (mode === PLAY_MODES.TARGET) ? null : PLAY_MODES.TARGET
+    setSoundMode(newMode)
   }
 
   _toggleUser() {
-    const { toggled } = this.state
-    this.setState({
-      toggled: (toggled === USER_TOGGLE) ? null : USER_TOGGLE
-    })
+    const { mode, setSoundMode } = this.props
+    const newMode  =  (mode === PLAY_MODES.CURRENT) ? null : PLAY_MODES.CURRENT
+    setSoundMode(newMode)
   }
 
   _togglePlay() {
