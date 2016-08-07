@@ -1,5 +1,5 @@
 TODO:
-- target user toggle > move everuthing out of state
+- target user toggle > move play/pause out of state
 - faire play / pause
 - faire generateur exercice
 - appliquer les effets

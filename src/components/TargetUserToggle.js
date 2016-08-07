@@ -5,19 +5,19 @@ import { PLAY_MODES } from 'nativeMixing/src/config/sounds'
 
 class TargetUserToggle extends Component {
   render() {
-    const { mode } = this.props
+    const { mode, isPlaying } = this.props
     return (
       <View style={styles.wrapper}>
-        <TouchableWithoutFeedback onPress={this._toggleTarget.bind(this)} >
+        <TouchableWithoutFeedback onPress={this._toggleTarget.bind(this)}>
           <View style={[ styles.target, mode === PLAY_MODES.TARGET && styles.activeToggle]}  />
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={this._toggleUser.bind(this)} >
+        <TouchableWithoutFeedback onPress={this._toggleUser.bind(this)}>
           <View style={[ styles.user, mode === PLAY_MODES.CURRENT && styles.activeToggle]}  />
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={this._togglePlay.bind(this)} >
-          <View style={[ styles.play ]}>
+        <TouchableWithoutFeedback onPress={this._togglePlay.bind(this)}>
+          <View style={styles.play}>
             <View style={styles.buttonWrapper}>
-              <PlayPauseButton />
+              <PlayPauseButton paused={!isPlaying}/>
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -38,10 +38,8 @@ class TargetUserToggle extends Component {
   }
 
   _togglePlay() {
-    const { canPause } = this.state
-    this.setState({
-      canPause: !canPause
-    })
+    const { isPlaying, setIsPlaying } = this.props
+    setIsPlaying(!isPlaying)
   }
 }
 

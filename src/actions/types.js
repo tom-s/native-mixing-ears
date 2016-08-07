@@ -9,3 +9,4 @@ export const EXERCISE_GENERATE_ERROR = 'exercise.generate.error'
 // Sounds
 export const PLAY_SOUND = 'play.sound'
 export const SWITCH_SOUND_MODE = 'switch.sound.mode'
+export const SET_PLAYING = 'set.playing'

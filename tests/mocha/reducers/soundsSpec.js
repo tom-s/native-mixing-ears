@@ -10,12 +10,13 @@ describe('sounds reducer', () => {
     expect(state).to.eql({
       current: null,
       all: {},
-      mode: PLAY_MODES.ORIGINAL
+      mode: PLAY_MODES.ORIGINAL,
+      isPlaying: false
     })
   })
 
   it('play sound', () => {
-    const previousState = { current: null, all: {}, mode: PLAY_MODES.ORIGINAL }
+    const previousState = { current: null, all: {}, mode: PLAY_MODES.ORIGINAL, isPlaying: false }
     deepFreeze(previousState)
     const state = soundsReducer(previousState, { type: PLAY_SOUND, payload: { id: 1 } })
     expect(state).to.eql({
@@ -23,7 +24,8 @@ describe('sounds reducer', () => {
       all: {
         1: { id: 1 }
       },
-      mode: PLAY_MODES.ORIGINAL
+      mode: PLAY_MODES.ORIGINAL,
+      isPlaying: false
     })
   })
 })
