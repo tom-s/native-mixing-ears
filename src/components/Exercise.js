@@ -18,7 +18,7 @@ class Exercise extends Component {
   }
 
   componentDidMount() {
-    const { playSound } = this.props
+    //const { playSound } = this.props
     const exercise = generateExercise(EXERCISES_TYPES.ATTACK, LEVELS.EASY)
     const answers = {}
     Object.keys(exercise.values).forEach(key => {

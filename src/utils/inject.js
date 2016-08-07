@@ -9,7 +9,7 @@ const inject = (window) => {
   try {
     window.audioCtx = new AudioContext()
   } catch(err) {
-    alert(err)
+    //alert(err)
   }
 
   /* Web audio API methods */
@@ -46,7 +46,7 @@ const inject = (window) => {
       window.audioCtx.decodeAudioData(request.response, (buffer) => {
         playSound(buffer)
       }, () => {
-        alert('error decoding')
+        //alert('error decoding')
       })
     }
     request.send()

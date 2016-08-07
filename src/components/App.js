@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Navigator, ActivityIndicator } from 'react-native'
+import { View, StyleSheet, Navigator, ActivityIndicator, TouchableHighlight, Text } from 'react-native'
 import inject from 'nativeMixing/src/utils/inject'
 import * as routes from 'nativeMixing/src/config/routes'
-import codePush from 'react-native-code-push'
+//import codePush from 'react-native-code-push'
 
 // Components
 import Drawer from 'react-native-drawer'
@@ -34,7 +34,7 @@ class App extends Component {
 
   componentDidMount() {
     // Try to sync to check it works
-    codePush.sync()
+    //codePush.sync()
   }
 
   render() {
@@ -68,9 +68,27 @@ class App extends Component {
         acceptPan={false}
         panOpenMask={0.1}
         content={<SidePanel closeDrawer={this.closeDrawer} goTo={this._goTo.bind(this)} />}>
-        <Navigator ref={(ref) => this._navigator = ref} initialRoute={{id: routes.EXERCISE }}
+        <Navigator ref={(ref) => this._navigator = ref} initialRoute={routes.EXERCISE}
             renderScene={this._renderScene.bind(this)}
-            configureScene={this._configureScene.bind(this)} />
+            configureScene={this._configureScene.bind(this)}
+            navigationBar={
+              <Navigator.NavigationBar
+                routeMapper={{
+                  LeftButton: () =>{
+                    return ( <TouchableHighlight onPress={() => this.openDrawer()}>
+                      <Text style={styles.navigationBarTitle}>Hamburger</Text>
+                    </TouchableHighlight>)
+                  },
+                  RightButton: () => {
+                    return null
+                  },
+                  Title: (route) => {
+                    return <Text style={styles.navigationBarTitle}>{route.title}</Text>
+                  }
+                }}
+                style={styles.navigationBar} />
+            }
+        />
         <Webview key='webview' localhost={false}
           injectedJavaScript={inject}
           onBridgeMessage={this._onBridgeMessage}
@@ -89,7 +107,7 @@ class App extends Component {
   }
 
   _onBridgeMessage() {
-    alert('received message ' + msg)
+    //alert('received message ')
   }
 
   _configureScene() {
@@ -100,10 +118,10 @@ class App extends Component {
   _renderScene(route, navigator) {
     let page
     switch(route.id) {
-      case routes.HOME:
+      case routes.HOME.id:
         page = <Home navigator={navigator} />
         break
-      case routes.EXERCISE:
+      case routes.EXERCISE.id:
         page = <Exercise navigator={navigator} />
         break
     }
@@ -116,8 +134,7 @@ class App extends Component {
 
   _goTo(route) {
     this.closeDrawer()
-    this._navigator.push({id: route})
-
+    this._navigator.push(route)
   }
 }
 
@@ -139,6 +156,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8
+  },
+  navigationBar: {
+    backgroundColor: 'gray'
+  },
+  navigationBarTitle: {
+    color: '#FFFFFF'
   }
 })
 

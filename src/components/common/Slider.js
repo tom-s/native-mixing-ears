@@ -10,7 +10,7 @@ import {
   PanResponder,
   View,
   Easing
-} from "react-native"
+} from 'react-native'
 
 import shallowCompare from 'react-addons-shallow-compare'
 import styleEqual from 'style-equal'
