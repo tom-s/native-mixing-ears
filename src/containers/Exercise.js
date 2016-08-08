@@ -25,4 +25,3 @@ const mapDispatchToProps = (dispatch) => {
 const Exercise = connect(mapStateToProps, mapDispatchToProps)(ExerciseComponent)
 
 export default Exercise
-

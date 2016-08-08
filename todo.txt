@@ -1,5 +1,4 @@
 TODO:
-- faire play / pause
-- faire generateur exercice
+- faire play / pause (mechanism ou play current exercise in inject.js)
 - appliquer les effets
 - faire lecture de la bonne réponse

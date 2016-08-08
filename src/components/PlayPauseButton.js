@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {TouchableWithoutFeedback } from 'react-native'
 //import { Motion, spring } from 'react-motion'
 import Svg,{ Path} from 'react-native-svg'
 //const animationConfig = {stiffness: 70, damping: 9}
@@ -7,8 +6,8 @@ import Svg,{ Path} from 'react-native-svg'
 class PlayPauseButton extends Component {
   constructor(props) {
     super(props)
+    /* we'll need it later '
     this.state = {
-      paused: true,
       pause: {
         previousOpacity: 0,
         opacity: 0
@@ -17,22 +16,19 @@ class PlayPauseButton extends Component {
         previousOpacity: 1,
         opacity: 1
       }
-    }
+    }*/
   }
 
   render() {
-    const { ...otherProps } = this.props
-    const { paused } = this.state
+    const { paused } = this.props
     const button = (paused)
       ? <Path d='M11,10 L17, 10 17,26 11,26 M20,10 L26,10 26,26 20,26' fill='#FFFFFF'/>
       : <Path d='M11,10 L18, 13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28' fill='#FFFFFF' />
 
     return (
-      <TouchableWithoutFeedback onPress={this._togglePaused.bind(this)} {...otherProps}>
-        <Svg width="200" height="200" viewBox="0 0 36 36">
+       <Svg width="200" height="200" viewBox="0 0 36 36">
           {button}
-        </Svg>
-      </TouchableWithoutFeedback>
+       </Svg>
     )
 
     /*
@@ -52,8 +48,10 @@ class PlayPauseButton extends Component {
     )*/
   }
 
+  /*
   _togglePaused() {
-    const { paused, pause, play } = this.state
+    const { paused } = this.props
+    const { pause, play } = this.state
     if (paused) {
       pause.previousOpacity = 0
       pause.opacity = 1
@@ -68,11 +66,10 @@ class PlayPauseButton extends Component {
 
 
     this.setState({
-      paused: !paused,
       play,
       pause
     })
-  }
+  }*/
 }
 
 export default PlayPauseButton
